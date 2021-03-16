@@ -36,3 +36,31 @@ like :
 
 ### Explain
 *how the tools worked*
+
+1. how to capture the full screen
+
+    **do have many ways**
+    * python pair with selenium [reference](https://stackoverflow.com/questions/41721734/take-screenshot-of-full-page-with-selenium-python-with-chromedriver)  <not test>
+
+        * Disadvantage
+            * need to deal with the url directly which will not full control
+
+    * merge small sheet together [reference](https://raywoodcockslatest.wordpress.com/2017/02/23/merge-screenshots/)  <not test>
+
+        * Disadvantage
+            * should research one way to detect overlap when merge the sheets
+            * which makes complicated for scroll control, how long should one step
+
+    * by the help of chrome itself by sent command with the keyboard [reference](https://chiamakaikeanyi.dev/winning-with-chrome-devtools-how-to-capture-full-page-screenshots/)  <favor way>
+        ```
+        # can use this feature by below commands
+        Ctrl+Shift+I
+        Ctrl+Shift+P
+        Type Scre…
+        Choose “Capture full size screenshot”*
+        ```
+
+        * Disadvantage
+            * need to detect how to cut the header/footer/side of the full size webpage
+
+2. .etc
