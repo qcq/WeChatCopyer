@@ -1,0 +1,5 @@
+config:
+    file_name: /tmp/novel.txt
+
+log:
+
