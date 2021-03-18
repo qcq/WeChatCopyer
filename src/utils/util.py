@@ -3,4 +3,4 @@
 
 def write_to_file(contents, file_out):
     with open(file_out, 'a') as f:
-        f.write
+        f.writelines(contents)
