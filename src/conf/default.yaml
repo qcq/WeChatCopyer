@@ -1,5 +1,13 @@
 config:
     file_name: /tmp/novel.txt
+    platform: Mac # also can be windows, Linux in someway
 
 log:
+
+
+Mac:  # the command used in project
+    browser: Chrome
+    whether_running: pgrep
+
+
 

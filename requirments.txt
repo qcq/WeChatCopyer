@@ -1,3 +1,4 @@
 cnocr
 pynput
 pytest
+pyyaml
