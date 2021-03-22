@@ -1,13 +1,21 @@
 config:
-    file_name: /tmp/novel.txt
-    platform: Mac # also can be windows, Linux in someway
+    platform: Windows # also can be windows, Linux in someway
 
 log:
-
+    format: # define the format of logging utility
 
 Mac:  # the command used in project
     browser: Chrome
     whether_running: pgrep
+    file_name: /tmp/novel.txt
 
+Windows:
+    browser: chrome
+    whether_running: tasklist | grep
+
+Linux:
+    browser: Chrome
+    whether_running: pgrep
+    file_name: /tmp/novel.txt
 
 

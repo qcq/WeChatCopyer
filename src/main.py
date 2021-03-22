@@ -3,7 +3,9 @@
 
 import argparse
 import os
+from utils import *
 from yamlreader import conf_parse
+from webpagesnap import listener
 
 
 def __parse_cmd():
@@ -24,16 +26,20 @@ args = __parse_cmd()
 cfg = conf_parse(args.config)
 
 # need to check if the chrome running(take chrome as default browser)
-platform = cfg['config']['platform']
-browser = cfg[platform]['browser']
-command = cfg[platform]['whether_running']
-result = os.system(command + ' ' + browser)
-if result != 0:
+command = parse_check_if_browser_online_command(cfg)
+result = execute_command(command)
+
+if not result :
     print("chrome not running, please run it manually")
     exit(-1)
 
 # also need check if the current wechat read logined
+# have to skip this step, which little hard
 
+listener.start()
+
+import time
+listener.join()
 
 for section in cfg:
     print(section)
