@@ -64,3 +64,9 @@ like :
             * need to detect how to cut the header/footer/side of the full size webpage
 
 2. .etc
+
+### NOTE
+
+  1. Captured full size webpage can also be as file to be used as final book
+  2. This app also can be as the auto reader which for long time online needed
+

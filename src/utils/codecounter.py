@@ -21,8 +21,8 @@ def __count_file(file):
             # skip the empty line
             if line.strip() == "":
                 continue
-            counter = counter + 1
-        return counter
+            counter += 1
+    return counter
 
 
 if __name__ == "__main__":
