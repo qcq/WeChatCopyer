@@ -10,9 +10,12 @@ mouseController = mouse.Controller()
 keyboardController = keyboard.Controller()
 
 # by the help of chrome of development tools
+
+
 def full_wabpage_snapshot(x, y):
     # reference the link https://pypi.org/project/pynput/
-    print('The current pointer position is {0}'.format(mouseController.position))
+    print('The current pointer position is {0}'.format(
+        mouseController.position))
 
     # Set pointer position
     mouseController.position = (x, y)
@@ -43,7 +46,6 @@ def full_wabpage_snapshot(x, y):
     keyboardController.release(keyboard.Key.ctrl)
     keyboardController.release('p')
 
-
     # Type 'Capture full size screenshot' using the shortcut type method
     time.sleep(timeNeedToSleep)
     print('ready to input')
@@ -57,7 +59,6 @@ def full_wabpage_snapshot(x, y):
     time.sleep(timeNeedToSleep)
     print('ready to input')
 
-
     with keyboardController.pressed(keyboard.Key.shift):
         keyboardController.press(keyboard.Key.ctrl)
         keyboardController.press('i')
@@ -67,17 +68,18 @@ def full_wabpage_snapshot(x, y):
     keyboardController.release('i')
 
     # here need to close the footer
-
+    # the hard part is to locate the <x, y> area of close label.
 
 
 def scroll_mouse(step):
     # scroll the mouse for 1 step
     mouseController.scroll(0, step)
 
+
 def scroll_to_end():
     # after scroll the mouse a while, need to capture the picture, then ocr it
     previousImage = None
-    currentImage = pass # take image
+    currentImage = pass  # take image
 
     while currentImage != previousImage:
         scroll_mouse(1)
@@ -91,6 +93,4 @@ listener = mouse.Listener(
     on_scroll=on_scroll
 )
 
-#time.sleep(100)
-
-
+# time.sleep(100)

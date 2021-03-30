@@ -1,6 +1,15 @@
 # -*- coding:utf-8 -*-
 #!/usr/bin/env python3
 
+'''
+this script as tool to count the lines of code has write.
+feature:
+1. count the files which list
+2. skip the comment with the # \''' \"""
+3. also skip the empty line
+'''
+
+
 def __count_file(file):
     counter = 0
     with open(file, 'r') as f_in:

@@ -1,5 +1,5 @@
 config:
-    platform: Windows # also can be windows, Linux in someway
+    platform: Windows # also can be windows, Linux, Mac. Will support Windows first
 
 log:
     format: # define the format of logging utility
