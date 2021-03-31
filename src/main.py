@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 #!/usr/bin/env python3
 
+import time
 import argparse
 import os
 from utils import *
 from yamlreader import conf_parse
-from webpagesnap import listener
+from webpagesnap import listener, full_wabpage_snapshot
 
 
 def __parse_cmd():
@@ -29,21 +30,26 @@ cfg = conf_parse(args.config)
 command = parse_check_if_browser_online_command(cfg)
 result = execute_command(command)
 
-if not result :
+
+if not result:
     print("chrome not running, please run it manually")
     exit(-1)
+
 
 # also need check if the current wechat read logined
 # have to skip this step, which little hard
 
 listener.start()
 
-import time
-listener.join()
+# listener.join()
 
-for section in cfg:
-    print(section)
+print(cfg)
 
+# here sleep for 10s to let the user switch the chrome to focus
+time.sleep(10)
+
+# here should do real wrok
+full_wabpage_snapshot(0, 0)
 
 # 1. should logged in, can reference https://github.com/Higurashi-kagome/pythontools
 

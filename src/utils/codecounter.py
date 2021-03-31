@@ -36,7 +36,7 @@ def __count_file(file):
 
 if __name__ == "__main__":
     included_file_to_count = ['src/main.py', 'src/picturetoocr.py', 'src/webpagesnap.py',
-                              'src/yamlreader.py', 'src/utils/util.py']
+                              'src/yamlreader.py', 'src/utils/util.py', 'src/utils/coordinatedector.py']
 
     data = {file: __count_file(file) for file in included_file_to_count}
     print(data)

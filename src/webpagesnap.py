@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 #!/usr/bin/env python3
 
+import os
 from pynput import mouse, keyboard
 import time
 
@@ -18,11 +19,11 @@ def full_wabpage_snapshot(x, y):
         mouseController.position))
 
     # Set pointer position
-    mouseController.position = (x, y)
-    print('Now we have moved it to {0}'.format(mouseController.position))
+    # mouseController.position = (x, y)
+    # print('Now we have moved it to {0}'.format(mouseController.position))
 
     # Double click; this is different from pressing and releasing
-    mouseController.click(mouse.Button.left, 1)
+    # mouseController.click(mouse.Button.left, 1)
 
     # Scroll two steps down
     # mouseController.scroll(0, 2)
@@ -71,6 +72,16 @@ def full_wabpage_snapshot(x, y):
     # the hard part is to locate the <x, y> area of close label.
 
 
+def get_the_neweset_snapshot_path(path):
+    list_files = os.listdir(path)
+    print(list_files)
+    png_files = [os.path.join(path, f)
+                 for f in list_files if f.endswith(".app")]
+    png_files.sort(key=os.path.getmtime, reverse=True)
+    assert(len(png_files) != 0)
+    return png_files[0]
+
+
 def scroll_mouse(step):
     # scroll the mouse for 1 step
     mouseController.scroll(0, step)
@@ -79,10 +90,15 @@ def scroll_mouse(step):
 def scroll_to_end():
     # after scroll the mouse a while, need to capture the picture, then ocr it
     previousImage = None
-    currentImage = pass  # take image
+    currentImage = None  # take image
 
     while currentImage != previousImage:
+        after_scroll_times_will_detect_weather_scroll_to_end = 10
+        while after_scroll_times_will_detect_weather_scroll_to_end
         scroll_mouse(1)
+        after_scroll_times_will_detect_weather_scroll_to_end -= 1
+        previousImage = currentImage
+        currentImage = None
 
 
 def on_scroll(x, y, dx, dy):
@@ -92,5 +108,5 @@ def on_scroll(x, y, dx, dy):
 listener = mouse.Listener(
     on_scroll=on_scroll
 )
-
+# get_the_neweset_snapshot_path('/Users/qinchuanqing/Downloads')
 # time.sleep(100)

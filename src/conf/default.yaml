@@ -1,5 +1,5 @@
 config:
-    platform: Windows # also can be windows, Linux, Mac. Will support Windows first
+    platform: Mac # also can be windows, Linux, Mac. Will support Windows first
 
 log:
     format: # define the format of logging utility
@@ -8,6 +8,10 @@ Mac:  # the command used in project
     browser: Chrome
     whether_running: pgrep
     file_name: /tmp/novel.txt
+    snapshot_path: /Users/qinchuanqing/Downloads/ # where the full webpage captured
+    browser_tiem: 10 # in second how long random to view current screen page
+    screen_shot: [0, 0, 100, 100] # screen cpature area to judge if the mouse scroll to the end
+    close_capture_status_bar: [0, 0, 100, 100] # screen area where the capture full website close label located
 
 Windows:
     browser: chrome
