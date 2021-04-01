@@ -1,12 +1,11 @@
 # -*- coding:utf-8 -*-
 #!/usr/bin/env python3
 
-import time
 import argparse
-import os
+from handler.snapshothandler import capture_full_book
 from utils import *
-from yamlreader import conf_parse
-from webpagesnap import listener, full_wabpage_snapshot, scroll_to_end
+from listener import listener
+from handler import conf_parse
 
 
 def __parse_cmd():
@@ -41,17 +40,14 @@ if not result:
 
 listener.start()
 
-# listener.join()
-
 print(cfg)
 
 # here sleep for 10s to let the user switch the chrome to focus
-time.sleep(10)
 
 # here should do real wrok
-full_wabpage_snapshot(0, 0)
+# full_wabpage_snapshot(0, 0)
 
-scroll_to_end(cfg)
+capture_full_book(cfg)
 
 # 1. should logged in, can reference https://github.com/Higurashi-kagome/pythontools
 

@@ -9,9 +9,14 @@ feature:
 3. also skip the empty line
 '''
 
+import os
+
 
 def __count_file(file):
     counter = 0
+    if not os.path.exists(file):
+        print(file, " not exist")
+        return 0
     with open(file, 'r') as f_in:
         commnet_out = False
         for line in f_in:
@@ -35,8 +40,17 @@ def __count_file(file):
 
 
 if __name__ == "__main__":
-    included_file_to_count = ['src/main.py', 'src/picturetoocr.py', 'src/webpagesnap.py',
-                              'src/yamlreader.py', 'src/utils/util.py', 'src/utils/coordinatedector.py']
+    included_file_to_count = [
+        'src/main.py',
+        'src/controller/mousecontroller.py',
+        'src/handler/snapshothandler.py',
+        'src/handler/yamlhandler.py',
+        'src/listener/keyboardlistener.py',
+        'src/listener/mouselistener.py',
+        'src/utils/util.py',
+        'src/utils/coordinatedector.py',
+        'src/utils/picturetoocr.py',
+    ]
 
     data = {file: __count_file(file) for file in included_file_to_count}
     print(data)

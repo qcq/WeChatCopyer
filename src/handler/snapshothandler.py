@@ -2,19 +2,12 @@
 #!/usr/bin/env python3
 
 import os
-from pynput import mouse, keyboard
+from pynput import keyboard
+from listener import mouseController, keyboardController
 import time
-
-import pyscreenshot
-import shutil
-import random
-
-from picturetoocr import picture_to_string
 
 timeNeedToSleep = 1
 
-mouseController = mouse.Controller()
-keyboardController = keyboard.Controller()
 
 # by the help of chrome of development tools
 
@@ -87,51 +80,9 @@ def get_the_neweset_snapshot_path(path):
     assert(len(png_files) != 0)
     return png_files[0]
 
-
-def scroll_mouse(step):
-    # scroll the mouse for 1 step
-    mouseController.scroll(0, step)
+def capture_full_book(cfg):
+    pass
 
 
-def scroll_to_end(cfg):
-    # after scroll the mouse a while, need to capture the picture, then ocr it
-    platform = cfg['config']['platform']
-    coordinates = cfg[platform]['screen_shot']
-    snapshot_path = cfg[platform]['snapshot_path']
-    assert(len(coordinates) == 4)
-    x1, y1, x2, y2 = *tuple(coordinates)
-
-    im = pyscreenshot.grab(bbox=(x1, y1, x2, y2))  # X1,Y1,X2,Y2
-    current_image = os.path.join(snapshot_path, 'current_image.png')
-    previous_image = os.path.join(snapshot_path, 'previous_image.png')
-    im.save(current_image)
-    assert(not os.path.exists(previous_image))
-    assert(os.path.exists(current_image))
-
-    while picture_to_string(current_image) != picture_to_string(previous_image):
-        after_scroll_times_will_detect_whether_scroll_to_end = 10
-        while after_scroll_times_will_detect_whether_scroll_to_end:
-            # simulate the human readming, how long will scroll the whell of mouse
-            time.sleep(random.randint(1, 10))
-            scroll_mouse(1)
-            after_scroll_times_will_detect_whether_scroll_to_end -= 1
-        # take current capture image to previous image
-        shutil.move(current_image, previous_image)
-        assert(os.path.exists(previous_image))
-        assert(not os.path.exists(current_image))
-        im = pyscreenshot.grab(bbox=(x1, y1, x2, y2))
-        im.save(current_image)
-        assert(os.path.exists(previous_image))
-        assert(os.path.exists(current_image))
-    return True
-
-
-def on_scroll(x, y, dx, dy):
-    print(x, y, dx, dy)
-
-
-listener = mouse.Listener(
-    on_scroll=on_scroll
-)
 # get_the_neweset_snapshot_path('/Users/qinchuanqing/Downloads')
 # time.sleep(100)
