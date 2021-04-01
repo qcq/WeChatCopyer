@@ -6,7 +6,7 @@ import argparse
 import os
 from utils import *
 from yamlreader import conf_parse
-from webpagesnap import listener, full_wabpage_snapshot
+from webpagesnap import listener, full_wabpage_snapshot, scroll_to_end
 
 
 def __parse_cmd():
@@ -50,6 +50,8 @@ time.sleep(10)
 
 # here should do real wrok
 full_wabpage_snapshot(0, 0)
+
+scroll_to_end(cfg)
 
 # 1. should logged in, can reference https://github.com/Higurashi-kagome/pythontools
 

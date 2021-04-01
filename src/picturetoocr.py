@@ -10,7 +10,7 @@ ocr = CnOcr()
 def picture_to_string(path):
     if not os.path.exists(path):
         print(path, "non-exist")
-        return
+        return ''
     res = ocr.ocr(path)
     result = [''.join(line) for line in res]
     return result

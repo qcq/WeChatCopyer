@@ -2,3 +2,4 @@ cnocr
 pynput
 pytest
 pyyaml
+pyscreenshot
