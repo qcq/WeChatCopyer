@@ -11,7 +11,7 @@ import os
 
 
 def test_ocr():
-    test_file = r'../res/test.png'
+    test_file = r'res/test.png'
     assert os.path.exists(test_file)
     ocr = CnOcr()
     res = ocr.ocr(test_file)

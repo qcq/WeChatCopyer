@@ -15,7 +15,14 @@ This project is intended for download the e-book by wechat read web app
 
 ```
 # by execute below command to install requirments
-pip3 install -r requirments.txt
+
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requiremnts.txt
+# install current project as develoment/editable mode
+pip install -e .
+# under root folder, execute below can do unitest
+pytest
 ```
 
 #### Configuration

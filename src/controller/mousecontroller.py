@@ -1,13 +1,15 @@
 # -*- coding:utf-8 -*-
 #!/usr/bin/env python3
 
-import os
-import pyscreenshot
-from listener import mouseController
-from utils import picture_to_string
-import time
-import random
+
 import shutil
+import random
+import time
+from utils import picture_to_string
+from listener import mouseController
+import pyscreenshot
+import os
+import sys
 
 
 def scroll_mouse_up(step):

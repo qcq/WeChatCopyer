@@ -5,7 +5,8 @@ import argparse
 from handler.snapshothandler import capture_full_book
 from utils import *
 from listener import listener
-from handler import conf_parse
+from handler import conf_parse, full_wabpage_snapshot
+import time
 
 
 def __parse_cmd():
@@ -42,12 +43,14 @@ listener.start()
 
 print(cfg)
 
+time.sleep(10)
+
 # here sleep for 10s to let the user switch the chrome to focus
 
 # here should do real wrok
-# full_wabpage_snapshot(0, 0)
+#full_wabpage_snapshot(0, 0)
 
-capture_full_book(cfg)
+# capture_full_book(cfg)
 
 # 1. should logged in, can reference https://github.com/Higurashi-kagome/pythontools
 
