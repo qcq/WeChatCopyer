@@ -50,6 +50,7 @@ if __name__ == "__main__":
         'src/utils/util.py',
         'src/utils/coordinatedector.py',
         'src/utils/picturetoocr.py',
+        'src/utils/logstuff.py',
     ]
 
     data = {file: __count_file(file) for file in included_file_to_count}

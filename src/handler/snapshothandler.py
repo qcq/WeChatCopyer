@@ -3,7 +3,10 @@
 
 import os
 from pynput import keyboard
+import pyscreenshot
 from listener import mouseController, keyboardController
+from utils import picture_to_string
+from controller import scroll_to_end, click_close_download_status_bar, click_next_chapter
 import time
 
 timeNeedToSleep = 1
@@ -93,4 +96,44 @@ def get_the_neweset_snapshot_path(cfg):
 
 
 def capture_full_book(cfg):
-    pass
+    temp_image = __capture_temp_image(cfg)
+    # if the
+    while "下一章" not in picture_to_string(temp_image):
+        os.remove(temp_image)
+        full_wabpage_snapshot(cfg)
+        if 'current_chapter' not in cfg.keys():
+            cfg['current_chapter'] = 1
+        else:
+            cfg['current_chapter'] += 1
+        __deal_snapshot(cfg)
+        click_close_download_status_bar(cfg)
+        scroll_to_end(cfg)
+        click_next_chapter(cfg)
+        # wait 10s to load next chapter
+        time.sleep(10)
+        __capture_temp_image(cfg)
+
+    os.remove(temp_image)
+    cfg.pop('current_chapter')
+
+
+def __capture_temp_image(cfg):
+    platform = cfg['config']['platform']
+    coordinates = cfg[platform]['screen_shot']
+    snapshot_path = cfg[platform]['snapshot_path']
+    im = pyscreenshot.grab(bbox=tuple(coordinates))  # X1,Y1,X2,Y2
+    temp_image = os.path.join(snapshot_path, 'temp_image.png')
+
+    im.save(temp_image)
+    assert(os.path.exists(temp_image))
+    return temp_image
+
+
+def __deal_snapshot(cfg):
+    print('the reader current at chapter :', cfg['current_chapter'])
+    full_webpage_path = get_the_neweset_snapshot_path(cfg)
+    new_name = os.path.join(os.path.dirname(
+        full_webpage_path), cfg['current_chapter'] + '.png')
+
+    os.rename(full_webpage_path, new_name)
+    # should consider move them to a new folder, which can be defined in conf files

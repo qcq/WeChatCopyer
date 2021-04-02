@@ -27,9 +27,8 @@ def scroll_to_end(cfg):
     coordinates = cfg[platform]['screen_shot']
     snapshot_path = cfg[platform]['snapshot_path']
     assert(len(coordinates) == 4)
-    x1, y1, x2, y2 = tuple(coordinates)
 
-    im = pyscreenshot.grab(bbox=(x1, y1, x2, y2))  # X1,Y1,X2,Y2
+    im = pyscreenshot.grab(bbox=tuple(coordinates))  # X1,Y1,X2,Y2
     current_image = os.path.join(snapshot_path, 'current_image.png')
     previous_image = os.path.join(snapshot_path, 'previous_image.png')
     im.save(current_image)
@@ -47,7 +46,7 @@ def scroll_to_end(cfg):
         shutil.move(current_image, previous_image)
         assert(os.path.exists(previous_image))
         assert(not os.path.exists(current_image))
-        im = pyscreenshot.grab(bbox=(x1, y1, x2, y2))
+        im = pyscreenshot.grab(bbox=tuple(coordinates))
         im.save(current_image)
         assert(os.path.exists(previous_image))
         assert(os.path.exists(current_image))
@@ -57,3 +56,11 @@ def scroll_to_end(cfg):
     assert(not os.path.exists(previous_image))
     assert(not os.path.exists(current_image))
     return True
+
+
+def click_close_download_status_bar(cfg):
+    pass
+
+
+def click_next_chapter(cfg):
+    pass

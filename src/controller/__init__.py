@@ -1,1 +1,1 @@
-from controller.mousecontroller import scroll_to_end
+from controller.mousecontroller import scroll_to_end, click_next_chapter, click_close_download_status_bar
