@@ -9,7 +9,9 @@ from utils import picture_to_string
 from controller import scroll_to_end, click_close_download_status_bar, click_next_chapter
 import time
 
-timeNeedToSleep = 1
+
+# this variable will effect the success rate of save whole webpage, seems litter larger is fine
+timeNeedToSleep = 4
 
 
 # by the help of chrome of development tools
@@ -82,12 +84,14 @@ def full_wabpage_snapshot(cfg):
     elif cfg['config']['platform'] == "Windows":
         full_wabpage_snapshot_windows()
 
+    # give some time to finish the download the snapshot
+    time.sleep(3)
+
 
 def get_the_neweset_snapshot_path(cfg):
     platform = cfg['config']['platform']
     path = cfg[platform]['snapshot_path']
     list_files = os.listdir(path)
-    print(list_files)
     png_files = [os.path.join(path, f)
                  for f in list_files if f.endswith((".png", ".PNG"))]
     png_files.sort(key=os.path.getmtime, reverse=True)
@@ -96,9 +100,10 @@ def get_the_neweset_snapshot_path(cfg):
 
 
 def capture_full_book(cfg):
+    # scroll to end first, then check if the "next chapter" in snapshot
+    scroll_to_end(cfg, 2)
     temp_image = __capture_temp_image(cfg)
-    # if the
-    while "下一章" not in picture_to_string(temp_image):
+    while "下一章" in picture_to_string(temp_image):
         os.remove(temp_image)
         full_wabpage_snapshot(cfg)
         if 'current_chapter' not in cfg.keys():
@@ -106,11 +111,13 @@ def capture_full_book(cfg):
         else:
             cfg['current_chapter'] += 1
         __deal_snapshot(cfg)
+        # give sometime to download th snapshot
         click_close_download_status_bar(cfg)
-        scroll_to_end(cfg)
+        scroll_to_end(cfg, 5)
         click_next_chapter(cfg)
         # wait 10s to load next chapter
         time.sleep(10)
+        scroll_to_end(cfg)
         __capture_temp_image(cfg)
 
     os.remove(temp_image)
@@ -130,10 +137,17 @@ def __capture_temp_image(cfg):
 
 
 def __deal_snapshot(cfg):
+    '''
+    rename the capture as chapter index, also save to a temp dir, in this case is qcq
+    '''
     print('the reader current at chapter :', cfg['current_chapter'])
+    platform = cfg['config']['platform']
+    snapshot_path = cfg[platform]['snapshot_path']
+    tmp_dir = 'qcq'
+    if not os.path.exists(os.path.join(snapshot_path, tmp_dir)):
+        os.mkdir(os.path.join(snapshot_path, tmp_dir))
     full_webpage_path = get_the_neweset_snapshot_path(cfg)
     new_name = os.path.join(os.path.dirname(
-        full_webpage_path), cfg['current_chapter'] + '.png')
+        full_webpage_path), tmp_dir, str(cfg['current_chapter']) + '.png')
 
     os.rename(full_webpage_path, new_name)
-    # should consider move them to a new folder, which can be defined in conf files

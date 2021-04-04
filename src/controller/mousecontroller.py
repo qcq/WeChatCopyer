@@ -11,6 +11,8 @@ import pyscreenshot
 import os
 import sys
 
+from pynput.mouse import Button
+
 
 def scroll_mouse_up(step):
     # scroll the mouse for 1 step
@@ -21,11 +23,12 @@ def scroll_mouse_down(step):
     mouseController.scroll(0, -1 * step)
 
 
-def scroll_to_end(cfg):
+def scroll_to_end(cfg, times=1):
     # after scroll the mouse a while, need to capture the picture, then ocr it
     platform = cfg['config']['platform']
     coordinates = cfg[platform]['screen_shot']
     snapshot_path = cfg[platform]['snapshot_path']
+    step = cfg[platform]['step'] * times
     assert(len(coordinates) == 4)
 
     im = pyscreenshot.grab(bbox=tuple(coordinates))  # X1,Y1,X2,Y2
@@ -39,8 +42,8 @@ def scroll_to_end(cfg):
         after_scroll_times_will_detect_whether_scroll_to_end = 10
         while after_scroll_times_will_detect_whether_scroll_to_end:
             # simulate the human readming, how long will scroll the whell of mouse
-            time.sleep(random.randint(1, 5))
-            scroll_mouse_down(1)
+            time.sleep(random.randint(1, 2))
+            scroll_mouse_down(step)
             after_scroll_times_will_detect_whether_scroll_to_end -= 1
         # take current capture image to previous image
         shutil.move(current_image, previous_image)
@@ -59,8 +62,25 @@ def scroll_to_end(cfg):
 
 
 def click_close_download_status_bar(cfg):
-    pass
+    # mouse move to position <x, y>
+    platform = cfg['config']['platform']
+    status_bar_position = cfg[platform]['close_capture_status_bar']
+    mouseController.position = tuple(status_bar_position)
+    # mouse click the left button
+
+    mouseController.press(Button.left)
+    mouseController.release(Button.left)
 
 
 def click_next_chapter(cfg):
-    pass
+    # mouse move to position <x, y>
+    platform = cfg['config']['platform']
+    next_chapter_position = cfg[platform]['next_chapter']
+    assert(len(next_chapter_position) == 4)
+    # take the coordinate to random positipn from area
+    x = random.randint(next_chapter_position[0], next_chapter_position[2])
+    y = random.randint(next_chapter_position[1], next_chapter_position[3])
+    mouseController.position = (x, y)
+    # mouse click the left button
+    mouseController.press(Button.left)
+    mouseController.release(Button.left)

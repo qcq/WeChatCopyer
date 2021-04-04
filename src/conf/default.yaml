@@ -10,8 +10,10 @@ Mac:  # the command used in project
     file_name: novel.txt
     snapshot_path: /Users/qinchuanqing/Downloads/ # where the full webpage captured
     browser_time: 10 # in second how long random to view current screen page
-    screen_shot: [0, 0, 100, 100] # screen cpature area to judge if the mouse scroll to the end
-    close_capture_status_bar: [0, 0, 100, 100] # screen area where the capture full website close label located
+    screen_shot: [288, 193, 1009, 774] # screen cpature area to judge if the mouse scroll to the end
+    close_capture_status_bar: [1260, 767] # screen area where the capture full website close label located
+    next_chapter: [452, 644, 836, 690] # x1, y1, x2, y2. declear the area where the "next chapter" located
+    step: 10 # how many steps will the mouse wheel scroll
 
 Windows:
     browser: chrome
@@ -20,7 +22,7 @@ Windows:
     snapshot_path: C:\Users\oam-tester\Downloads # where the full webpage captured
     browser_time: 10 # in second how long random to view current screen page
     screen_shot: [0, 0, 100, 100] # screen cpature area to judge if the mouse scroll to the end
-    close_capture_status_bar: [0, 0, 100, 100] # screen area where the capture full website close label located
+    close_capture_status_bar: [1260, 767] # screen area where the capture full website close label located
 
 Linux:
     browser: Chrome

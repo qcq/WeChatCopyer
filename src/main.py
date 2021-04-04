@@ -43,7 +43,9 @@ listener.start()
 
 print(cfg)
 
-time.sleep(10)
+time.sleep(3)
+
+capture_full_book(cfg)
 
 # here sleep for 10s to let the user switch the chrome to focus
 
