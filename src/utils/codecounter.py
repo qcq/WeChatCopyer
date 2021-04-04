@@ -49,12 +49,13 @@ if __name__ == "__main__":
         'src/listener/mouselistener.py',
         'src/utils/util.py',
         'src/utils/coordinatedector.py',
+        'src/utils/codecounter.py',
         'src/utils/picturetoocr.py',
         'src/utils/logstuff.py',
     ]
 
     data = {file: __count_file(file) for file in included_file_to_count}
-    print(data)
-
+    for key, value in data.items():
+        print(key, ":", value)
     lines = sum(data.values())
-    print(lines)
+    print("code lines:", lines)

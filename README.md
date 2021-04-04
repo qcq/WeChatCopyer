@@ -12,6 +12,8 @@ This project is intended for download the e-book by wechat read web app
 * pip --- manage for the python library
 * pynput --- which for control the mouse(click, scroll)
 * cnocr --- ocr the chinese words from picture
+* pyscreenshot -- take screenshot of specific area
+* pyyaml --- parse the raml conf file
 
 ```
 # by execute below command to install requirments
@@ -19,10 +21,22 @@ This project is intended for download the e-book by wechat read web app
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requiremnts.txt
+```
+
+
+
+#### run ut
+```
 # install current project as develoment/editable mode
 pip install -e .
 # under root folder, execute below can do unitest
 pytest
+```
+
+#### run code
+```
+cd src
+python3 main.py
 ```
 
 #### Configuration
@@ -31,7 +45,7 @@ so, need to let the tools knows some basic info.
 
 like :
 * where is the "next chapter" button located <x, y>
-* scroll the mouse whell
+* how quick scroll the mouse whell
 * .etc
 
 #### How
@@ -46,7 +60,7 @@ like :
 
 1. how to capture the full screen
 
-    **do have many ways**
+    **do have many ways, current worked by the help of chrome dev tools**
     * python pair with selenium [reference](https://stackoverflow.com/questions/41721734/take-screenshot-of-full-page-with-selenium-python-with-chromedriver)  <not test>
 
         * Disadvantage
