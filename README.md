@@ -88,6 +88,17 @@ like :
 
 ### NOTE
 
-  1. Captured full size webpage can also be as file to be used as final book
-  2. This app also can be as the auto reader which for long time online needed
+1. Captured full size webpage can also be as file to be used as final book
+2. This app also can be as the auto reader which for long time online needed
+
+### limit
+
+#### current limits with the help of the PC own host chrome
+
+1. the biggest limits is the project is releate with the screen Display
+include the size of the pix of the screen, my cureent pc is 2015 13.3 inch of macbook pro,
+which means, before use this project, should use the embed in tools to detect some place of
+the screen
+
+2. has releationship with the chrome in full screen or not
 

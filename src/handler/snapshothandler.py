@@ -62,9 +62,10 @@ def full_wabpage_snapshot_mac():
 def __type_in_string(type_in):
     time.sleep(timeNeedToSleep)
     keyboardController.type(type_in)
-    time.sleep(timeNeedToSleep)
+    time.sleep(timeNeedToSleep / 2)
     keyboardController.tap(keyboard.Key.enter)
-    time.sleep(timeNeedToSleep)
+    # seems need to give more time to him
+    time.sleep(timeNeedToSleep * 4)
 
 
 def __click_and_release(args):

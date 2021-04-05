@@ -40,9 +40,9 @@ def scroll_to_end(cfg, times=1):
 
     while picture_to_string(current_image) != picture_to_string(previous_image):
         after_scroll_times_will_detect_whether_scroll_to_end = 10
+        # simulate the human readming, how long will scroll the whell of mouse
+        time.sleep(random.randint(1, 3))
         while after_scroll_times_will_detect_whether_scroll_to_end:
-            # simulate the human readming, how long will scroll the whell of mouse
-            time.sleep(random.randint(1, 2))
             scroll_mouse_down(step)
             after_scroll_times_will_detect_whether_scroll_to_end -= 1
         # take current capture image to previous image

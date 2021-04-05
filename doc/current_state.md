@@ -2,6 +2,7 @@
 ## feature finished
 1. the project current can take as a auto reader
 2. the project can save all the webpage while as auto reader
+3. current this project can work on the MAC which is 2015 of 13 inch
 
 ## on the way
 1. ocr the captured full size website page
