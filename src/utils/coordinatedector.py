@@ -19,7 +19,7 @@ def on_move(x, y):
 def on_click(x, y, button, pressed):
     if button == mouse.Button.right:
         print('right mouse clicked, will exit the tools')
-        exit(-1)
+        raise Exception('exit')
     if pressed:
         print('click the position: (' + str(x) + ',' + str(y) + ')')
 
@@ -34,5 +34,8 @@ with mouse.Listener(
         on_move=on_move,
         on_click=on_click,
         on_scroll=on_scroll) as listener:
+    try:
+        listener.join()
+    except Exception as e:
+        print('succeed to exit')
 
-    listener.join()

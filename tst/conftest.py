@@ -34,3 +34,13 @@ def cfg():
                      'file_name': 'novel.txt'}}
 
     yield cfg
+
+@pytest.fixture
+def mac(cfg):
+    cfg['config']['platform'] = 'Mac'
+    yield cfg
+
+@pytest.fixture
+def windows(cfg):
+    cfg['config']['platform'] = 'Windows'
+    yield cfg

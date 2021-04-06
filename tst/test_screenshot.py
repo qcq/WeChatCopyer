@@ -9,6 +9,14 @@ import pytest
 from handler import get_the_neweset_snapshot_path
 
 
-def test_screenshot(cfg):
-    result = get_the_neweset_snapshot_path(cfg)
+@pytest.mark.mac
+def test_screenshot_mac(mac):
+    result = get_the_neweset_snapshot_path(mac)
+    print(result)
+    assert(result.endswith("current_image.png"))
+
+@pytest.mark.windows
+def test_screenshot_windows(windows):
+    result = get_the_neweset_snapshot_path(windows)
+    print(result)
     assert(result.endswith("current_image.png"))

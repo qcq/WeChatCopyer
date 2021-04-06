@@ -1,14 +1,16 @@
 config:
-    platform: Mac # also can be windows, Linux, Mac. Will support Windows first
+    platform: Windows # also can be windows, Linux, Mac. Will support Windows first
 
 log:
     format: # define the format of logging utility
 
 Mac:  # the command used in project
     browser: Chrome
+    dislay_resolutoin: [1280, 800] # dispaly resolution is 2560 * 1600, but the mouse step is 1280 * 800
     whether_running: pgrep
     file_name: novel.txt
     snapshot_path: /Users/qinchuanqing/Downloads/ # where the full webpage captured
+    full_webpage_save_folder: qcq # save the folder to qcq folder under snapshot_path
     browser_time: 10 # in second how long random to view current screen page
     screen_shot: [288, 193, 1009, 774] # screen cpature area to judge if the mouse scroll to the end
     close_capture_status_bar: [1260, 767] # screen area where the capture full website close label located
@@ -17,12 +19,16 @@ Mac:  # the command used in project
 
 Windows:
     browser: chrome
+    dislay_resolutoin: [1920, 1200]
     whether_running: tasklist | grep
     file_name: novel.txt
     snapshot_path: C:\Users\oam-tester\Downloads # where the full webpage captured
+    full_webpage_save_folder: qcq # save the folder to qcq folder under snapshot_path
     browser_time: 10 # in second how long random to view current screen page
-    screen_shot: [0, 0, 100, 100] # screen cpature area to judge if the mouse scroll to the end
-    close_capture_status_bar: [1260, 767] # screen area where the capture full website close label located
+    screen_shot: [508, 251, 1425, 1089] # screen cpature area to judge if the mouse scroll to the end
+    close_capture_status_bar: [1901, 1128] # screen area where the capture full website close label located
+    next_chapter: [751, 998, 1149, 1052] # x1, y1, x2, y2. declear the area where the "next chapter" located
+    step: 10 # how many steps will the mouse wheel scroll
 
 Linux:
     browser: Chrome

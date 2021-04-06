@@ -144,11 +144,11 @@ def __deal_snapshot(cfg):
     print('the reader current at chapter :', cfg['current_chapter'])
     platform = cfg['config']['platform']
     snapshot_path = cfg[platform]['snapshot_path']
-    tmp_dir = 'qcq'
-    if not os.path.exists(os.path.join(snapshot_path, tmp_dir)):
-        os.mkdir(os.path.join(snapshot_path, tmp_dir))
+    full_webpage_save_folder = cfg[platform]['full_webpage_save_folder']
+    if not os.path.exists(os.path.join(snapshot_path, full_webpage_save_folder)):
+        os.mkdir(os.path.join(snapshot_path, full_webpage_save_folder))
     full_webpage_path = get_the_neweset_snapshot_path(cfg)
     new_name = os.path.join(os.path.dirname(
-        full_webpage_path), tmp_dir, str(cfg['current_chapter']) + '.png')
+        full_webpage_path), full_webpage_save_folder, str(cfg['current_chapter']) + '.png')
 
     os.rename(full_webpage_path, new_name)
